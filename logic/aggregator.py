@@ -1,4 +1,4 @@
-from rates import get_rates
+from logic.rates import get_rates
 
 
 class Aggregator:
