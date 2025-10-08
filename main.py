@@ -3,6 +3,7 @@ import aio_pika
 import json
 from aio_pika import Message
 from aggregator import Aggregator
+from config import settings
 
 
 async def handle_message(message: aio_pika.IncomingMessage, channel: aio_pika.Channel):
@@ -39,7 +40,7 @@ async def consume_queue(queue_name: str, channel: aio_pika.Channel):
 
 
 async def main():
-    connection = await aio_pika.connect_robust("amqp://guest:guest@localhost:5672/")
+    connection = await aio_pika.connect_robust(settings.rabbitmq_url)
     channel = await connection.channel()
 
     # Список очередей, на которые подписываемся
