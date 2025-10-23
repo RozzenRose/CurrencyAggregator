@@ -14,6 +14,7 @@ async def handle_message(message: aio_pika.IncomingMessage, channel: aio_pika.Ch
             return
 
         data = json.loads(body.decode())
+
         calculator = Aggregator(data)
         result = await calculator.calculate()
 
